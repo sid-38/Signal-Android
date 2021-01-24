@@ -347,23 +347,6 @@ public class SignalServiceAccountManager {
     return Optional.fromNullable(contactTokenDetails);
   }
 
-  /**
-   * Checks whether a contact is currently registered with the server.
-   *
-   * @param e164number The contact to check.
-   * @return An optional ContactTokenDetails, present if registered, absent if not.
-   * @throws IOException
-   */
-  public Optional<ContactTokenDetails> getContact(String e164number) throws IOException {
-    String              contactToken        = createDirectoryServerToken(e164number, true);
-    ContactTokenDetails contactTokenDetails = this.pushServiceSocket.getContactTokenDetails(contactToken);
-
-    if (contactTokenDetails != null) {
-      contactTokenDetails.setNumber(e164number);
-    }
-
-    return Optional.fromNullable(contactTokenDetails);
-  }
 
   /**
    * Checks which contacts in a set are registered with the server.
